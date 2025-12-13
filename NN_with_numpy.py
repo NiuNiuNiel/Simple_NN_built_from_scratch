@@ -188,17 +188,19 @@ class Model():
         return self.feed_foward(feature)
 
     def save_model(self, file_path):
-        with open(file_path,"a") as file:
+        with open(file_path,"w") as file:
             file.write("position\ttype\tactivation_function\tbias\tweights")
 
             for layer_position, layer in enumerate(self.layer):
                 for node_position, node in enumerate(layer):
                     node_type = node.node_type
+                    weights_str = node.weight.tolist() if node_type == 'NEURON' else ''
+
                     file.write(f"\n{[layer_position,node_position]}\t"
                                f"{node_type}\t"
                                f"{node.activation_function_type if node_type == 'NEURON' else ''}\t"
                                f"{node.bias if node_type == 'NEURON' else ''}\t"
-                               f"{node.weight if node_type == 'NEURON' else ''}")
+                               f"{weights_str}")
 
 def load_model(file_path):
     import json
