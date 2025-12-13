@@ -241,7 +241,7 @@ class Model():
             return [v-t_v for v,t_v in zip(values,target_values)]
 
         if self.loss_function == "MEAN_ABSOLUTE_ERROR":
-            return [1 if v > t_v else -1 for v, t_v in zip(values,target_values)]
+            return [1 if v > t_v else -1 for v,t_v in zip(values,target_values)]
 
     def get_weight_adjust(self, loss_gradient, _input):
         return -self.learning_rate * loss_gradient * _input
