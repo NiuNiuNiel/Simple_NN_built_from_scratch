@@ -123,7 +123,8 @@ class Model():
 
             self.learning_rate = change_learning_rate(self.learning_rate)
 
-        return {"learning_rate": lr_per_epoch, "mae":mae_per_epoch, "mse":mse_per_epoch, "time_took":time_took_per_epoch}
+        print("Finished Training!")
+        return {"learning_rate": lr_per_epoch, "mae":mae_per_epoch, "mse":mse_per_epoch, "time_took_per_epoch":time_took_per_epoch, "total_time_took":sum(time_took_per_epoch)}
 
     def get_accuracy(self,dataset):
         predicts = self.feed_foward(dataset[0])
